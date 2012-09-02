@@ -21,13 +21,15 @@ This section describes how to install the plugin and get it working.
 2. Activate the plugin through the 'Plugins' menu in WordPress for all sites in your network
 3. Every site in your network now provides a sitemap.xml using a url like the following:
 
-<site baseurl>/sitemap.xml
+[site baseurl]/sitemap.xml
 
 == Frequently Asked Questions ==
 
 = I can't find a sitemap.xml file in my document root =
 
 Hopefully! This plugin generates the sitemap.xml file on-the-fly, once it's requested via http. A sitemap.xml file in the document root would even stop this plugin from working correctly.
+
+== Changelog ==
 
 = 1.0 =
 * Initial public release
