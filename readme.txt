@@ -2,7 +2,7 @@
 Contributors: luckyduck.networks
 Tags: sitemaps, google sitemaps, xml sitemaps, multisite
 Requires at least: 2.1
-Tested up to: 3.4.1
+Tested up to: 3.5.1
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -30,6 +30,9 @@ This section describes how to install the plugin and get it working.
 Hopefully! This plugin generates the sitemap.xml file on-the-fly, once it's requested via http. A sitemap.xml file in the document root would even stop this plugin from working correctly.
 
 == Changelog ==
+
+= 1.1 =
+* Only up to 10 posts/pages were added to the sitemap.xml file
 
 = 1.0 =
 * Initial public release

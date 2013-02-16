@@ -45,7 +45,8 @@ global $blog_id;
 $query_args = array(
 	'post_type'   => array( 'post', 'page' ),
 	'post_status' => 'publish',
-	'orderby'     => 'date'
+	'orderby'     => 'date',
+	'posts_per_page' => -1
 );
 query_posts( $query_args );
 

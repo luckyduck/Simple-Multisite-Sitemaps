@@ -3,7 +3,7 @@
 Plugin Name: Simple Multisite Sitemaps
 Plugin URI: https://github.com/luckyduck/Simple-Multisite-Sitemaps
 Description: A very simple solution for generating seperate Google XML Sitemaps for each WordPress site in a multisite network, on-the-fly.
-Version: 1.0
+Version: 1.1
 Author: Jan Brinkmann
 Author URI: http://the-luckyduck.de
 License: GPLv2
