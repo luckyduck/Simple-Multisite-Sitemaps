@@ -50,10 +50,18 @@ $query_args = array(
 );
 query_posts( $query_args );
 
+function get_custom_blog_permalink( $blog_id, $post_id ) {
+    $page_permalink = get_blog_permalink( $blog_id, $post_id );
+    if (!empty($_SERVER['HTTP_X_FORWARDED_PROTO'])) {
+        $page_permalink = 'https:' . preg_replace('#^https?.#', '', rtrim($page_permalink, '/'));
+    }
+    return $page_permalink;
+}
+
 if ( have_posts()) : while (have_posts() ) : the_post();
 ?>
 	<url>
-		<loc><?php echo get_blog_permalink( $blog_id, $post->ID ); ?></loc> 
+		<loc><?php echo get_custom_blog_permalink( $blog_id, $post->ID ); ?></loc> 
 		<lastmod><?php echo mysql2date( 'Y-m-d\TH:i:s+00:00', get_post_modified_time('Y-m-d H:i:s', true), false ); ?></lastmod> 
 		<changefreq>weekly</changefreq> 
 		<priority>0.6</priority>
