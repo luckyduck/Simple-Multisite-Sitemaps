@@ -1,0 +1,8 @@
+{
+    "name": "escaleseo/simple-multisite-sitemaps",
+    "version": "dev-master",
+    "type": "wordpress-plugin",
+    "require": {
+        "composer/installers": "^1.5"
+    }
+}
