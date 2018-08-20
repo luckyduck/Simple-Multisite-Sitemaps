@@ -42,17 +42,24 @@ function jb_sms_settings_page()
 {
     add_settings_section("section", "Options", null, "jb_sms");
     add_settings_field("jb_sms-checkbox", "Add \"/\" at the end of every sitemap entry?", "jb_sms_slash_checkbox_display", "jb_sms", "section");  
+    add_settings_field("jb_sms-only_canonical", "Add only canonical domain to sitemap?", "jb_sms_only_canonical_display", "jb_sms", "section");  
     register_setting("section", "jb_sms-checkbox");
+    register_setting("section", "jb_sms-only_canonical");
 }
 
 function jb_sms_slash_checkbox_display()
 {
    ?>
-        <!-- Here we are comparing stored value with 1. Stored value is 1 if user checks the checkbox otherwise empty string. -->
         <input type="checkbox" name="jb_sms-checkbox" value="1" <?php checked(1, get_option('jb_sms-checkbox'), true); ?> /> 
    <?php
 }
 
+function jb_sms_only_canonical_display()
+{
+   ?>
+        <input type="checkbox" name="jb_sms-only_canonical" value="1" <?php checked(1, get_option('jb_sms-only_canonical'), true); ?> /> 
+   <?php
+}
 
 add_action("admin_init", "jb_sms_settings_page");
 
@@ -61,13 +68,10 @@ function jb_sms_page()
   ?>
       <div class="wrap">
          <h1>Simple Multisite Sitemaps</h1>
-  
          <form method="post" action="options.php">
             <?php
                settings_fields("section");
-  
                do_settings_sections("jb_sms");
-                 
                submit_button(); 
             ?>
          </form>
@@ -114,5 +118,3 @@ function jb_sms_add_sitemap_to_robotstxt() {
     echo "Sitemap: ".get_option('siteurl')."/sitemap.xml\n\n";
 }
 add_action( 'do_robotstxt', 'jb_sms_add_sitemap_to_robotstxt' );
-
-
