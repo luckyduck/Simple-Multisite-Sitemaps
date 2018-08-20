@@ -72,7 +72,7 @@ if (get_option('jb_sms-only_canonical') == 1):
         <loc><?php echo $canonical_domain; ?></loc>
         <lastmod><?php echo mysql2date( 'Y-m-d\TH:i:s+00:00', get_post_modified_time('Y-m-d H:i:s', true), false ); ?></lastmod> 
         <changefreq>weekly</changefreq> 
-        <priority>0.6</priority>
+        <priority>1.0</priority>
     </url>
 <?php
 else:
@@ -82,7 +82,7 @@ else:
         <loc><?php echo get_custom_blog_permalink( $blog_id, $post->ID ); ?></loc> 
         <lastmod><?php echo mysql2date( 'Y-m-d\TH:i:s+00:00', get_post_modified_time('Y-m-d H:i:s', true), false ); ?></lastmod> 
         <changefreq>weekly</changefreq> 
-        <priority>0.6</priority>
+        <priority>1.0</priority>
     </url>
 <?php 
 endwhile; endif;
