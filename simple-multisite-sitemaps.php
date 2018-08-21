@@ -37,6 +37,55 @@ License: GPLv2
 \--------------------------------------------------------------------/
 */
 
+// plugin settings
+function jb_sms_settings_page()
+{
+    add_settings_section("section", "Options", null, "jb_sms");
+    add_settings_field("jb_sms-checkbox", "Add \"/\" at the end of every sitemap entry?", "jb_sms_slash_checkbox_display", "jb_sms", "section");  
+    add_settings_field("jb_sms-only_canonical", "Add only canonical domain to sitemap?", "jb_sms_only_canonical_display", "jb_sms", "section");  
+    register_setting("section", "jb_sms-checkbox");
+    register_setting("section", "jb_sms-only_canonical");
+}
+
+function jb_sms_slash_checkbox_display()
+{
+   ?>
+        <input type="checkbox" name="jb_sms-checkbox" value="1" <?php checked(1, get_option('jb_sms-checkbox'), true); ?> /> 
+   <?php
+}
+
+function jb_sms_only_canonical_display()
+{
+   ?>
+        <input type="checkbox" name="jb_sms-only_canonical" value="1" <?php checked(1, get_option('jb_sms-only_canonical'), true); ?> /> 
+   <?php
+}
+
+add_action("admin_init", "jb_sms_settings_page");
+
+function jb_sms_page()
+{
+  ?>
+      <div class="wrap">
+         <h1>Simple Multisite Sitemaps</h1>
+         <form method="post" action="options.php">
+            <?php
+               settings_fields("section");
+               do_settings_sections("jb_sms");
+               submit_button(); 
+            ?>
+         </form>
+      </div>
+   <?php
+}
+
+function menu_item()
+{
+  add_submenu_page("options-general.php", "Sitemap Settings", "Sitemap Settings", "manage_options", "jb_sms", "jb_sms_page"); 
+}
+ 
+add_action("admin_menu", "menu_item");
+
 // flush!
 function jb_sms_sitemap_flush_rules() {
     global $wp_rewrite;
@@ -54,6 +103,7 @@ function jb_sms_xml_feed_rewrite($wp_rewrite) {
  
     $wp_rewrite->rules = $feed_rules + $wp_rewrite->rules;
 }
+
 add_filter( 'generate_rewrite_rules', 'jb_sms_xml_feed_rewrite' );
 
 // generate sitemap.xml using the template
@@ -68,6 +118,3 @@ function jb_sms_add_sitemap_to_robotstxt() {
     echo "Sitemap: ".get_option('siteurl')."/sitemap.xml\n\n";
 }
 add_action( 'do_robotstxt', 'jb_sms_add_sitemap_to_robotstxt' );
-
-
-?>
