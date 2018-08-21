@@ -32,6 +32,8 @@
 */
 header( 'HTTP/1.0 200 OK' );
 header( 'Content-Type: text/xml; charset=' . get_option( 'blog_charset' ), true );
+header( 'Cache-Control: public, must-revalidate, proxy-revalidate, max-age=0' );
+
 echo '<?xml version="1.0" encoding="'.get_option( 'blog_charset' ).'"?'.'>'; 
 ?>
 
